@@ -3,9 +3,13 @@
  */
 
 const { RESULT_CODE } = require('../config/common')
-/*
+
+/**
  * 返回结果封装，格式化
- * @param data 数据
+ * @param {*} data 
+ * @param {*} errcode 
+ * @param {*} errmsg 
+ * @param {*} type 
  */
 const resultFormat = (
   data,

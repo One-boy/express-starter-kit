@@ -66,12 +66,12 @@ const routerConfig = {
 const routes = () => {
   Object.keys(routerConfig).forEach(item => {
     // 获取对应路由的接口
-    const interface = interfaceConfig[item]
+    const inf = interfaceConfig[item]
     routerConfig[item].forEach(value => {
       // 组装路由的访问路径
-      const routerPath = `${interface.prefix}${value.path}`
+      const routerPath = `${inf.prefix}${value.path}`
       // 执行动作
-      createAction(router, '', interface.contronller, value.action, routerPath, value.method)
+      createAction(router, '', inf.contronller, value.action, routerPath, value.method)
     })
   })
   return router

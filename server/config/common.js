@@ -2,6 +2,8 @@
  * 基础配置
  */
 
+// 监听端口
+const PORT = 12580
 
 // 一些服务端返回码定义
 const RESULT_CODE = {
@@ -19,8 +21,6 @@ const RESULT_CODE = {
   },
 }
 
-// 监听端口
-const PORT = 12580
 
 module.exports = {
   RESULT_CODE,
