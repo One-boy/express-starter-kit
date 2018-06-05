@@ -1,0 +1,23 @@
+{
+  "name": "express-starter-kit",
+  "version": "1.0.0",
+  "description": "基于express的nodeJs脚手架",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/One-boy/express-starter-kit.git"
+  },
+  "author": "huyu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/One-boy/express-starter-kit/issues"
+  },
+  "homepage": "https://github.com/One-boy/express-starter-kit#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
