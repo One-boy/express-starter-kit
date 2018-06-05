@@ -19,7 +19,7 @@ class ProductController extends baseController {
   list(ctx) {
     console.log('ProductController list')
     const data = [1, 2, 3].map(item => ({ name: `商品${item}`, value: item, time: new Date().toLocaleString() }))
-    ctx.response.send(resultFormat(
+    ctx.response.json(resultFormat(
       data,
       RESULT_CODE.SUCCESS.code,
       RESULT_CODE.SUCCESS.msg
@@ -33,7 +33,7 @@ class ProductController extends baseController {
   add(ctx) {
     console.log('ProductController add')
     const data = [1, 2, 3].map(item => ({ name: `商品${item}`, value: item, time: new Date().toLocaleString() }))
-    ctx.response.send(resultFormat(
+    ctx.response.json(resultFormat(
       data,
       RESULT_CODE.SUCCESS.code,
       '添加成功'
@@ -47,7 +47,7 @@ class ProductController extends baseController {
   delete(ctx) {
     console.log('ProductController delete')
     const data = [1, 2, 3].map(item => ({ name: `商品${item}`, value: item, time: new Date().toLocaleString() }))
-    ctx.response.send(resultFormat(
+    ctx.response.json(resultFormat(
       data,
       RESULT_CODE.SUCCESS.code,
       '删除成功'
@@ -61,7 +61,7 @@ class ProductController extends baseController {
   update(ctx) {
     console.log('ProductController update')
     const data = [1, 2, 3].map(item => ({ name: `商品${item}`, value: item, time: new Date().toLocaleString() }))
-    ctx.response.send(resultFormat(
+    ctx.response.json(resultFormat(
       data,
       RESULT_CODE.SUCCESS.code,
       '更新成功'

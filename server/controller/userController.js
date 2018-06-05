@@ -17,7 +17,7 @@ class UserController extends baseController {
    */
   async login(ctx) {
     console.log('UserController login')
-    ctx.response.send(resultFormat(
+    ctx.response.json(resultFormat(
       {
         userName: 'huyu',
         age: 100,
@@ -34,7 +34,7 @@ class UserController extends baseController {
    */
   async logout(ctx) {
     console.log('UserController logout')
-    ctx.response.send(resultFormat(
+    ctx.response.json(resultFormat(
       null,
       RESULT_CODE.SUCCESS.code,
       '退出成功'

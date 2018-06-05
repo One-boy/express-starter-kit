@@ -9,21 +9,12 @@ const { RESULT_CODE } = require('../config/common')
  * @param {*} data // 返回的数据
  * @param {*} code // 返回的code
  * @param {*} msg  // 返回的消息内容
- * @param {*} type   // 返回的数据格式
  */
 const resultFormat = (
   data,
   code = 0,
   msg,
-  type = 'json',
 ) => {
-  if (type === 'json') {
-    return JSON.stringify({
-      code,
-      msg,
-      data,
-    })
-  }
   return {
     code,
     msg,
@@ -61,7 +52,7 @@ const createAction = (
       await controllerIns[action].call(controllerIns, ctx)
     } else {
       // 未登录，提示未登录
-      response.send(resultFormat(null, RESULT_CODE.NOT_LOGIN.code, RESULT_CODE.NOT_LOGIN.msg))
+      response.json(resultFormat(null, RESULT_CODE.NOT_LOGIN.code, RESULT_CODE.NOT_LOGIN.msg))
     }
   })
 }
