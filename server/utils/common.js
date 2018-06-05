@@ -6,39 +6,39 @@ const { RESULT_CODE } = require('../config/common')
 
 /**
  * 返回结果封装，格式化
- * @param {*} data 
- * @param {*} errcode 
- * @param {*} errmsg 
- * @param {*} type 
+ * @param {*} data // 返回的数据
+ * @param {*} code // 返回的code
+ * @param {*} msg  // 返回的消息内容
+ * @param {*} type   // 返回的数据格式
  */
 const resultFormat = (
   data,
-  errcode = 0,
-  errmsg,
+  code = 0,
+  msg,
   type = 'json',
 ) => {
   if (type === 'json') {
     return JSON.stringify({
-      errcode,
-      errmsg,
+      code,
+      msg,
       data,
     })
   }
   return {
-    errcode,
-    errmsg,
+    code,
+    msg,
     data,
   }
 }
 
 /**
  * 路由创建和分配
- * @param {*} router 
- * @param {*} baseurl 
- * @param {*} routerController 
- * @param {*} action 
- * @param {*} path 
- * @param {*} method 
+ * @param {*} router // 路由方法
+ * @param {*} baseurl  // 路由基础路径
+ * @param {*} routerController // 处理的控制器
+ * @param {*} action // 控制器执行的方法
+ * @param {*} path // 路径
+ * @param {*} method // http方法，如get,post,put,delete
  */
 const createAction = (
   router,

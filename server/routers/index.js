@@ -26,12 +26,12 @@ const routerConfig = {
   // 用户相关的接口
   user: [
     {
-      method: 'post',
+      method: 'get',
       path: 'login',
       action: 'login'
     },
     {
-      method: 'post',
+      method: 'get',
       path: 'logout',
       action: 'logout'
     },
@@ -39,22 +39,22 @@ const routerConfig = {
   // 产品相关的接口
   product: [
     {
-      method: 'post',
+      method: 'get',
       path: 'list',
       action: 'list'
     },
     {
-      method: 'post',
+      method: 'get',
       path: 'add',
       action: 'add'
     },
     {
-      method: 'post',
+      method: 'get',
       path: 'delete',
       action: 'delete'
     },
     {
-      method: 'post',
+      method: 'get',
       path: 'update',
       action: 'update'
     },

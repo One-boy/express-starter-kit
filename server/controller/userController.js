@@ -11,14 +11,34 @@ class UserController extends baseController {
     super()
   }
 
+  /**
+   * 登录
+   * @param {*} ctx 
+   */
   async login(ctx) {
     console.log('UserController login')
-    ctx.response.send(resultFormat({ userName: 'huyu', age: 100 }, RESULT_CODE.SUCCESS.code, RESULT_CODE.SUCCESS.msg))
+    ctx.response.send(resultFormat(
+      {
+        userName: 'huyu',
+        age: 100,
+        time: new Date().toLocaleString()
+      },
+      RESULT_CODE.SUCCESS.code,
+      RESULT_CODE.SUCCESS.msg
+    ))
   }
 
 
-  async logout() {
+  /**
+   * 登出
+   */
+  async logout(ctx) {
     console.log('UserController logout')
+    ctx.response.send(resultFormat(
+      null,
+      RESULT_CODE.SUCCESS.code,
+      '退出成功'
+    ))
   }
 }
 

@@ -9,7 +9,11 @@ class BaseController {
     this.ctx = ctx
   }
 
+  /**
+   * 初始化，做一些是否登录的判断，过滤等操作
+   */
   async init() {
+    // 是否已经登录
     this.isLogin = true
     await new Promise((resolve) => {
       console.log('BaseController init')
