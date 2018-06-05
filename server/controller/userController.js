@@ -7,8 +7,8 @@ const { resultFormat } = require('../utils/common')
 
 class UserController extends baseController {
 
-  constructor() {
-    super()
+  constructor(ctx) {
+    super(ctx)
   }
 
   /**

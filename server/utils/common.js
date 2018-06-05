@@ -45,7 +45,7 @@ const createAction = (
       response,
     }
     const controllerIns = new routerController(ctx)
-    await controllerIns.init(ctx)
+    await controllerIns.init()
     if (controllerIns.isLogin) {
       // 如果已经是登录状态
       // 执行正常操作
