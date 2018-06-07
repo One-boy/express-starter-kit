@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/One-boy/express-starter-kit#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

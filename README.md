@@ -18,3 +18,20 @@
 ```
 curl -X POST 'http://127.0.0.1:12580/user/login' -d 'a=1'
 ```
+
+- ubuntu18.04上安装mariadb（10.3）
+```
+安装：
+sudo apt-get update
+sudo apt install mariadb-server
+
+启动：
+mysqld_safe &
+
+登录：
+mysql -uroot -p
+
+配置：
+/etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
