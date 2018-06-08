@@ -1,37 +1,69 @@
-// 数据库
+/**
+ * 数据库连接
+ */
+
+
+
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('node', 'node', '123', {
-  host: '127.0.0.1',
-  port: '3306',
-  dialect: 'mysql',
-  operatorsAliases: false,
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-  define: {
-    // underscored: false,
-    // freezeTableName: false,
-    charset: 'utf8',
-    dialectOptions: {
-      collate: 'utf8_general_ci'
-    },
-    // 默认true
-    timestamps: false
-  },
-})
+const { print } = require('./common')
+const { DB_MYSQL_CONFIG } = require('../config/common')
+
+/**
+ * 连接数据库
+ */
+function connectDB() {
+  print('连接数据库...' + JSON.stringify(DB_MYSQL_CONFIG))
+  // print(DB_MYSQL_CONFIG)
+  const sequelize = new Sequelize(
+    DB_MYSQL_CONFIG.dbbase,
+    DB_MYSQL_CONFIG.user,
+    DB_MYSQL_CONFIG.password,
+    {
+      host: DB_MYSQL_CONFIG.host,
+      port: DB_MYSQL_CONFIG.port,
+      dialect: 'mysql',
+      operatorsAliases: false,
+      // 是否启用日志，默认true
+      logging: false,
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      },
+      // 默认配置
+      define: {
+        // underscored: false,
+        // freezeTableName: false,
+        charset: 'utf8',
+        dialectOptions: {
+          collate: 'utf8_general_ci'
+        },
+        // 默认true
+        timestamps: false
+      },
+    })
+
+  // 测试连接
+  sequelize
+    .authenticate()
+    .then(() => {
+      print('数据库连接成功')
+    })
+    .catch(err => {
+      print('数据库连接失败:' + err, 'error')
+    })
+
+  return sequelize
+}
 
 
-sequelize
-  .authenticate()
-  .then(() => {
-    query()
-  })
-  .catch(err => {
-    console.error('数据库连接失败:', err)
-  })
+
+module.exports = {
+  connectDB,
+  Sequelize,
+}
+
 
 const query = async () => {
   console.log('数据库连接已经建立')

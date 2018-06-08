@@ -4,7 +4,19 @@
 
 // 监听端口
 const PORT = 12580
-
+// 数据库配置
+const DB_MYSQL_CONFIG = {
+  // 数据库
+  dbbase: 'node',
+  // 用户名
+  user: 'node',
+  // 密码
+  password: '123',
+  // 地址
+  host: '127.0.0.1',
+  // 端口
+  port: 3306,
+}
 // 一些服务端返回码定义
 const RESULT_CODE = {
   SUCCESS: {
@@ -25,4 +37,5 @@ const RESULT_CODE = {
 module.exports = {
   RESULT_CODE,
   PORT,
+  DB_MYSQL_CONFIG,
 }

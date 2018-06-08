@@ -11,9 +11,9 @@ const { RESULT_CODE } = require('../config/common')
  * @param {*} msg  // 返回的消息内容
  */
 const resultFormat = (
-  data,
+  data = null,
   code = 0,
-  msg,
+  msg = '',
 ) => {
   return {
     code,
@@ -57,7 +57,44 @@ const createAction = (
   })
 }
 
+
+/**
+ * 日志打印
+ * @param {*} content 
+ * @param {String} type 
+ */
+const print = (content, type = 'log') => {
+  let func = null
+  let ansi = ''
+  switch (type) {
+    case 'log':
+      func = console.log
+      // 默认效果，取消所有属性
+      ansi = '\033[0m'
+      break
+    case 'error':
+      func = console.error
+      // 红色
+      ansi = '\033[31m'
+      break
+    case 'warn':
+      func = console.warn
+      // 黄色
+      ansi = '\033[33m'
+      break
+    default:
+      func = console.log
+      ansi = '\033[0m'
+      break
+  }
+  const date = new Date().toLocaleString()
+
+  func(`${ansi}===${type.toUpperCase()}=== ${date}：`, content)
+}
+
+
 module.exports = {
   resultFormat,
   createAction,
+  print,
 }
