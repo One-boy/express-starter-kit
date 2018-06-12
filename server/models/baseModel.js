@@ -2,7 +2,7 @@
  * 基础model类
  */
 
-const global = require('./global')
+const global = require('../global')
 
 /**
  * 所有model需要继承BaseModel类，
@@ -10,7 +10,7 @@ const global = require('./global')
  */
 class BaseModel {
   constructor() {
-    // 定义模式
+    // 定义模式，有各种对表的操作方法
     this.model = global.sequelizeIns.define(
       // 表名
       this.getName(),
@@ -18,6 +18,7 @@ class BaseModel {
       this.getScheme(global.Sequelize),
       //
     )
+    global.commons.print('this.model=' + this.model)
   }
 
   getName() {

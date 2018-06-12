@@ -4,6 +4,9 @@
 const baseController = require('./baseController')
 const { RESULT_CODE } = require('../config/common')
 const { resultFormat } = require('../utils/common')
+const userModel = require('../models/userModel')
+const global = require('../global')
+
 
 class UserController extends baseController {
 
@@ -16,7 +19,13 @@ class UserController extends baseController {
    * @param {*} ctx 
    */
   async login(ctx) {
-    console.log('UserController login')
+    let ins = global.getInts(userModel)
+    let record = await ins.findByUserName('huyu')
+    let countAll = await ins.countAll()
+    global.commons.print('UserController login')
+    global.commons.print('record=', record)
+    global.commons.print('countAll=', countAll)
+
     ctx.response.json(resultFormat(
       {
         userName: 'huyu',
