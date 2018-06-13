@@ -17,6 +17,9 @@
 - 使用curl命令post数据：
 ```
 curl -X POST 'http://127.0.0.1:12580/user/login' -d 'a=1'
+
+// post json以及带cookie
+ curl -i -H 'content-type:application/json' -X POST 'http://127.0.0.1:12580/user/login' -d '{"userName":"huyu","password":"123"}' --cookie '_uid_=1222;_token_=fdsf2'
 ```
 
 - ubuntu18.04上安装mariadb（10.3）

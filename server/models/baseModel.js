@@ -18,7 +18,6 @@ class BaseModel {
       this.getScheme(global.Sequelize),
       //
     )
-    global.commons.print('this.model=' + this.model)
   }
 
   getName() {

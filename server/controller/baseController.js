@@ -4,6 +4,8 @@
  * 对请求或返回数据，做一些公共操作
  */
 const global = require('../global')
+const jwt = require('jsonwebtoken')
+const userModel = require('../models/userModel')
 
 class BaseController {
 
@@ -26,7 +28,7 @@ class BaseController {
     global.commons.print('protocol=' + request.protocol)
     global.commons.print('httpVersion=' + request.httpVersion)
     // 允许的域，跨域时用
-    response.append('Access-Control-Allow-Origin', `${request.headers.protocol}://${request.headers.host}`)
+    response.append('Access-Control-Allow-Origin', `${request.protocol}://${request.host}`)
     // 跨域时是否允许带认证信息
     response.append('Access-Control-Allow-Credentials', true)
     // 允许客户端修改的头部
@@ -37,10 +39,43 @@ class BaseController {
 
   /**
    * 检查是否登录
+   * 目前的方法：
+   * 1，获取cookie中的uid和token
+   * 2，解析出token中的uid
+   * 3，如果解析出的uid和cookie的uid一样，则是登录状态
+   * 
+   * 如果要下线其它地方，再采取存储token（sessionId）的方式
    */
   async checkLogin() {
-    // 是否已经登录
-    this.isLogin = true
+    this.ctx.request
+    // 过滤登录的路径
+    let ignoreRouter = [
+      '/user/login',
+      '/user/logout',
+      '/user/register',
+    ]
+    if (ignoreRouter.indexOf(this.ctx.request.path) !== -1) {
+      this.isLogin = true
+    } else {
+      let { _uid_, _token_ } = this.ctx.request.cookies
+      if (!_uid_ || !_token_) {
+        this.isLogin = false
+        return false
+      }
+      let ins = global.getInts(userModel)
+      let userObj = await ins.findById(_uid_)
+      if (!userObj) {
+        this.isLogin = false
+        return false
+      }
+      let docodedToken = jwt.verify(_token_, userObj.passwdsalt)
+
+      if (docodedToken.uid === _uid_) {
+        this.isLogin = true
+        return true
+      }
+    }
+
   }
 }
 

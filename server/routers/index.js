@@ -26,17 +26,17 @@ const routerConfig = {
   // 用户相关的接口
   user: [
     {
-      method: 'get',
+      method: 'post',
       path: 'login',
       action: 'login'
     },
     {
-      method: 'get',
+      method: 'post',
       path: 'register',
       action: 'register'
     },
     {
-      method: 'get',
+      method: 'post',
       path: 'logout',
       action: 'logout'
     },

@@ -1,8 +1,10 @@
 /**
  * 一些公用的方法
+ * 
  */
 
 const { RESULT_CODE } = require('../config/common')
+const sha1 = require('sha1')
 
 /**
  * 返回结果封装，格式化
@@ -92,9 +94,43 @@ const print = (content, type = 'log') => {
   func(`${ansi}===${type.toUpperCase()}=== ${date}：`, content)
 }
 
+// 根据密码和盐，生成密码
+function generatePassword(password, passwdsalt) {
+  return sha1(passwdsalt + sha1(password))
+}
+
+/**
+ * 生成多少天后的date对象，
+ * 用于cookie等
+ * @param {Number} day 
+ */
+function expireDate(day) {
+  let date = new Date()
+  date.setTime(date.getTime() + day * 86400000)
+  return date
+}
+
+/**
+ * 生成随机字符串
+ */
+function randomStr() {
+  return Math.random().toString(36).substr(2)
+}
+
+/**
+ * 时间戳
+ */
+function time() {
+  return Date.parse(new Date()) / 1000;
+}
+
 
 module.exports = {
   resultFormat,
   createAction,
   print,
+  generatePassword,
+  expireDate,
+  randomStr,
+  time,
 }

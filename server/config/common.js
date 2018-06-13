@@ -27,6 +27,10 @@ const RESULT_CODE = {
     code: 101,
     msg: '未登录',
   },
+  COMMON_ERROR: {
+    code: 201,
+    msg: '常规错误',
+  },
   SYS_ERROR: {
     code: 202,
     msg: '系统内部错误',

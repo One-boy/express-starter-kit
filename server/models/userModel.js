@@ -52,9 +52,14 @@ class UserModel extends BaseModel {
         type: Sequelize.STRING,
         comment: '密码盐'
       },
-      // 时间戳
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      // 创建记录的时间戳
+      createdTime: {
+        type: Sequelize.STRING,
+      },
+      // 最近更新的时间戳
+      updatedTime: {
+        type: Sequelize.STRING,
+      },
     }
   }
 
@@ -65,6 +70,14 @@ class UserModel extends BaseModel {
   findByUserName(userName) {
     // 返回第一条匹配的记录
     return this.model.findOne({ where: { userName, } })
+  }
+
+  /**
+   * 根据id查找记录
+   * @param {*} uid 
+   */
+  findById(uid) {
+    return this.model.findById(uid)
   }
 
   /**
