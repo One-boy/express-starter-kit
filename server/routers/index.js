@@ -32,6 +32,11 @@ const routerConfig = {
     },
     {
       method: 'get',
+      path: 'register',
+      action: 'register'
+    },
+    {
+      method: 'get',
       path: 'logout',
       action: 'logout'
     },

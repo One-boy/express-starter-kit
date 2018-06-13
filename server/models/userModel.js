@@ -77,6 +77,7 @@ class UserModel extends BaseModel {
    * @param {Object} obj 
    */
   add(obj) {
+    // const {}
     return this.model.create(obj)
   }
 

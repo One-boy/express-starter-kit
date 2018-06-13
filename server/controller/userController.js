@@ -23,14 +23,15 @@ class UserController extends baseController {
     let record = await ins.findByUserName('huyu')
     let countAll = await ins.countAll()
     global.commons.print('UserController login')
-    global.commons.print('record=', record)
-    global.commons.print('countAll=', countAll)
+    global.commons.print('record=' + record)
+    global.commons.print('countAll=' + countAll)
 
     ctx.response.json(resultFormat(
       {
-        userName: 'huyu',
-        age: 100,
-        time: new Date().toLocaleString()
+        userName: record.userName,
+        password: record.password,
+        time: new Date().toLocaleString(),
+        createTime: record.passwdsalt,
       },
       RESULT_CODE.SUCCESS.code,
       RESULT_CODE.SUCCESS.msg
@@ -42,13 +43,30 @@ class UserController extends baseController {
    * 登出
    */
   async logout(ctx) {
-    console.log('UserController logout')
+    global.commons.print('UserController logout')
+
     ctx.response.json(resultFormat(
       null,
       RESULT_CODE.SUCCESS.code,
       '退出成功'
     ))
   }
+
+  /**
+   * 注册
+   */
+  async register(ctx) {
+    global.commons.print('UserController register')
+    let ins = global.getInts(userModel)
+    await ins.add({ nickName: '胡渝', userName: 'huyu', password: Date.now() })
+    ctx.response.json(resultFormat(
+      null,
+      RESULT_CODE.SUCCESS.code,
+      '注册成功'
+    ))
+  }
+
+
 }
 
 module.exports = UserController
