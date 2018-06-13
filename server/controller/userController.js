@@ -66,7 +66,7 @@ class UserController extends baseController {
    * 设置登录cookie
    */
   setLoginCookie(uid, passwdsalt) {
-    this.ctx.request.cookie('_uid_', uid, {
+    this.ctx.response.cookie('_uid_', uid, {
       // 过期时间
       expires: global.commons.expireDate(7),
       // 只适用于http
@@ -76,7 +76,7 @@ class UserController extends baseController {
     })
     // 生成签名
     const token = jwt.sign({ uid, }, passwdsalt, { expiresIn: '7 days' })
-    this.ctx.request.cookie('_token_', token, {
+    this.ctx.response.cookie('_token_', token, {
       // 过期时间
       expires: global.commons.expireDate(7),
       // 只适用于http
@@ -125,7 +125,8 @@ class UserController extends baseController {
     let salt = global.commons.randomStr()
     let ins = global.getInts(userModel)
     let time = global.commons.time()
-    await ins.add({ nickName, userName, password, passwdsalt: salt, updatedTime: time, createdTime: time })
+    let sha1Password = global.commons.generatePassword(password, salt)
+    await ins.add({ nickName, userName, password: sha1Password, passwdsalt: salt, updatedTime: time, createdTime: time })
 
     ctx.response.json(resultFormat(
       null,

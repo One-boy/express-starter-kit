@@ -28,7 +28,7 @@ class BaseController {
     global.commons.print('protocol=' + request.protocol)
     global.commons.print('httpVersion=' + request.httpVersion)
     // 允许的域，跨域时用
-    response.append('Access-Control-Allow-Origin', `${request.protocol}://${request.host}`)
+    response.append('Access-Control-Allow-Origin', request.headers.origin)
     // 跨域时是否允许带认证信息
     response.append('Access-Control-Allow-Credentials', true)
     // 允许客户端修改的头部

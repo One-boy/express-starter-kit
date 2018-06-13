@@ -77,6 +77,13 @@ const routes = () => {
       const routerPath = `${inf.prefix}${value.path}`
       // 执行动作
       createAction(router, '', inf.contronller, value.action, routerPath, value.method)
+      // options请求，放过它？
+      router.options('*', (request, response) => {
+        response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
+        response.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+        response.setHeader('Access-Control-Allow-Credentials', true)
+        response.end()
+      })
     })
   })
   return router

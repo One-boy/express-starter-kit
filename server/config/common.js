@@ -20,7 +20,7 @@ const DB_MYSQL_CONFIG = {
 // 一些服务端返回码定义
 const RESULT_CODE = {
   SUCCESS: {
-    code: 100,
+    code: 1,
     msg: '成功',
   },
   NOT_LOGIN: {
@@ -32,7 +32,7 @@ const RESULT_CODE = {
     msg: '常规错误',
   },
   SYS_ERROR: {
-    code: 202,
+    code: -1,
     msg: '系统内部错误',
   },
 }
