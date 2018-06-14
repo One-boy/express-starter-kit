@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     let fileExt = ''
+    // 提取文件后缀
     if (file.originalname && file.originalname.lastIndexOf('.') !== -1) {
       fileExt = file.originalname.substr(file.originalname.lastIndexOf('.') + 1)
       fileExt = '.' + fileExt
@@ -92,6 +93,8 @@ class ProductController extends baseController {
    * @param {*} ctx 
    */
   upload(ctx) {
+    // 上传的文件再ctx.request.file当中（使用single时）
+    // 如果 formdata有非文件数据，则放在ctx.request.body中
     multerUpload(ctx.request, ctx.response, (err) => {
       if (err) {
         ctx.response.json(resultFormat(
