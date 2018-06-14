@@ -92,6 +92,23 @@ class UserController extends baseController {
   async logout(ctx) {
     global.commons.print('UserController logout')
 
+    this.ctx.response.cookie('_uid_', '', {
+      // 过期时间一天后
+      expires: global.commons.expireDate(-1),
+      // 只适用于http
+      httpOnly: true,
+      // 适用路径
+      path: '/',
+    })
+    this.ctx.response.cookie('_token_', '', {
+      // 过期时间一天后
+      expires: global.commons.expireDate(-1),
+      // 只适用于http
+      httpOnly: true,
+      // 适用路径
+      path: '/',
+    })
+
     ctx.response.json(resultFormat(
       null,
       RESULT_CODE.SUCCESS.code,
