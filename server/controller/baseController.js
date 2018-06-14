@@ -67,12 +67,25 @@ class BaseController {
         this.isLogin = false
         return false
       }
-      let docodedToken = jwt.verify(_token_, userObj.passwdsalt)
+      try {
+        let docodedToken = jwt.verify(_token_, userObj.passwdsalt)
 
-      if (docodedToken.uid == _uid_) {
-        this.isLogin = true
-        return true
+        /**
+         * docodedToken的数据：
+         * exp:过期时间戳
+         * iat:签名时的时间戳
+         * ...其它签入其中的参数
+         */
+        if (docodedToken.uid == _uid_ && Date.now() < docodedToken.exp * 1000) {
+          this.isLogin = true
+          return true
+        }
+      } catch (error) {
+        // ...
+        global.commons.print(error, 'error')
       }
+      this.isLogin = false
+      return false
     }
 
   }
