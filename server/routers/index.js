@@ -63,6 +63,11 @@ const routerConfig = {
       path: 'update',
       action: 'update'
     },
+    {
+      method: 'post',
+      path: 'upload',
+      action: 'upload'
+    },
   ],
 }
 

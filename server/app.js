@@ -13,7 +13,7 @@ const { RESULT_CODE } = require('./config/common')
 const { resultFormat } = require('./utils/common')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-// const multer = require('multer')
+
 
 // 赋值公共工具
 global.commons = commons
@@ -22,6 +22,9 @@ global.commons = commons
 app.use(bodyParser.json()) //application/json解析
 app.use(bodyParser.urlencoded({ extended: true })) //application/x-www-form-urlencoded解析
 // app.use(multer()) // multipart/form-data解析，需要在具体方法里使用
+
+// 静态文件
+app.use('/uploads', express.static('uploads'))
 
 // cookie解析中间件
 app.use(cookieParser())

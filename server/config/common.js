@@ -17,6 +17,7 @@ const DB_MYSQL_CONFIG = {
   // 端口
   port: 3306,
 }
+
 // 一些服务端返回码定义
 const RESULT_CODE = {
   SUCCESS: {
@@ -24,7 +25,7 @@ const RESULT_CODE = {
     msg: '成功',
   },
   NOT_LOGIN: {
-    code: 101,
+    code: -1,
     msg: '未登录',
   },
   COMMON_ERROR: {
@@ -32,14 +33,17 @@ const RESULT_CODE = {
     msg: '常规错误',
   },
   SYS_ERROR: {
-    code: -1,
+    code: -2,
     msg: '系统内部错误',
   },
 }
 
+// 图片服务器前缀
+const IMGFILE_PREFIX = 'http://127.0.0.1:12580'
 
 module.exports = {
   RESULT_CODE,
   PORT,
   DB_MYSQL_CONFIG,
+  IMGFILE_PREFIX,
 }

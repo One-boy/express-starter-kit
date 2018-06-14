@@ -4,6 +4,24 @@
 const baseController = require('./baseController')
 const { RESULT_CODE } = require('../config/common')
 const { resultFormat } = require('../utils/common')
+const multer = require('multer')
+const { IMGFILE_PREFIX } = require('../config/common')
+
+// 文件存储器
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    let fileExt = ''
+    if (file.originalname && file.originalname.lastIndexOf('.') !== -1) {
+      fileExt = file.originalname.substr(file.originalname.lastIndexOf('.') + 1)
+      fileExt = '.' + fileExt
+    }
+    cb(null, file.fieldname + '-' + Date.now() + fileExt)
+  }
+})
+const multerUpload = multer({ storage }).single('file')
 
 class ProductController extends baseController {
 
@@ -68,6 +86,33 @@ class ProductController extends baseController {
     ))
   }
 
+
+  /**
+   * 上传图片的处理
+   * @param {*} ctx 
+   */
+  upload(ctx) {
+    multerUpload(ctx.request, ctx.response, (err) => {
+      if (err) {
+        ctx.response.json(resultFormat(
+          null,
+          RESULT_CODE.COMMON_ERROR.code,
+          '上传失败，请检查文件是否正确'
+        ))
+      } else {
+        // 正常处理
+        ctx.response.json(resultFormat(
+          {
+            imgUrl: ctx.request.file.path,
+            imgFullUrl: `${IMGFILE_PREFIX}/${ctx.request.file.path}`,
+            filename: ctx.request.file.filename,
+          },
+          RESULT_CODE.SUCCESS.code,
+          '上传成功'
+        ))
+      }
+    })
+  }
 }
 
 

@@ -18,7 +18,7 @@ const resultFormat = (
   msg = '',
 ) => {
   return {
-    code,
+    status: code,
     msg,
     data,
   }

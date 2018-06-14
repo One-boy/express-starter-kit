@@ -47,7 +47,6 @@ class BaseController {
    * 如果要下线其它地方，再采取存储token（sessionId）的方式
    */
   async checkLogin() {
-    this.ctx.request
     // 过滤登录的路径
     let ignoreRouter = [
       '/user/login',
@@ -70,7 +69,7 @@ class BaseController {
       }
       let docodedToken = jwt.verify(_token_, userObj.passwdsalt)
 
-      if (docodedToken.uid === _uid_) {
+      if (docodedToken.uid == _uid_) {
         this.isLogin = true
         return true
       }
