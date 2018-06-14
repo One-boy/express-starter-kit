@@ -26,6 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true })) //application/x-www-form-urle
 // 静态文件
 app.use('/uploads', express.static('uploads'))
 
+
+// swagger-ui-dist
+const pathToSwaggerUi = require('swagger-ui-dist').absolutePath()
+app.use('/api', express.static(pathToSwaggerUi))
+
+
 // cookie解析中间件
 app.use(cookieParser())
 

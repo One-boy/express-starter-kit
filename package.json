@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
-    "eslint": "^4.19.1"
+    "eslint": "^4.19.1",
+    "swagger-ui-dist": "^3.17.0"
   }
 }
