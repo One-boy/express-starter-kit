@@ -8,9 +8,12 @@
 ### 文件夹介绍
 - `config`：配置文件，如一些返回码
 - `controller`：控制器，接口逻辑处理
+- `models`:数据模型
 - `routers`：路由配置
 - `utils`：通用工具
 - `app.js`：入口文件
+- `global.js`:全局通用工具
+- `install.js`:安装文件，初始化数据库
 ### 技术栈
 - `express@4.16.3+node@8.6`
 ### 其它辅助
