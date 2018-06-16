@@ -1,7 +1,7 @@
 /**
  * 产品相关处理器
  */
-const baseController = require('./baseController')
+const baseController = require('./base')
 const { RESULT_CODE } = require('../config/common')
 const { resultFormat } = require('../utils/common')
 const multer = require('multer')

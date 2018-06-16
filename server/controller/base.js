@@ -5,7 +5,7 @@
  */
 const global = require('../global')
 const jwt = require('jsonwebtoken')
-const userModel = require('../models/userModel')
+const userModel = require('../models/user')
 
 class BaseController {
 

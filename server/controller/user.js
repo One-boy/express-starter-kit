@@ -1,10 +1,10 @@
 /**
  * 用户相关处理器
  */
-const baseController = require('./baseController')
+const baseController = require('./base')
 const { RESULT_CODE } = require('../config/common')
 const { resultFormat } = require('../utils/common')
-const userModel = require('../models/userModel')
+const userModel = require('../models/user')
 const global = require('../global')
 const jwt = require('jsonwebtoken')
 

@@ -8,7 +8,7 @@
 const Sequelize = require('sequelize')
 const global = require('../global')
 const { DB_MYSQL_CONFIG } = require('../config/common')
-const UserModel = require('../models/userModel')
+const UserModel = require('../models/user')
 
 /**
  * 连接数据库
@@ -94,6 +94,9 @@ module.exports = {
 }
 
 
+/**
+ * 增删改查示例
+ */
 const query = async () => {
   console.log('数据库连接已经建立')
   const User = sequelize.define('user', {

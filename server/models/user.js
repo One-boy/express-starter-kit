@@ -3,7 +3,7 @@
  */
 
 const global = require('../global')
-const BaseModel = require('./baseModel')
+const BaseModel = require('./base')
 /**
  * 所有model需要继承BaseModel类，
  * 并且需要实现getName和getScheme方法，否则报错
