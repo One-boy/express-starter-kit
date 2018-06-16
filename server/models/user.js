@@ -63,6 +63,17 @@ class UserModel extends BaseModel {
     }
   }
 
+
+  /**
+   * 表结构其它配置项
+   */
+  getOptions() {
+    return {
+      // 对于user表，自增id从一百万开始。
+      initialAutoIncrement: 1000000,
+    }
+  }
+
   /**
    * 根据用户名查找纪录
    * @param {String} userName 

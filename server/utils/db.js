@@ -64,24 +64,18 @@ function connectDB(callback) {
 /**
  * 初始化数据库
  */
-function initDB() {
+async function initDB() {
   global.commons.print('初始化数据库表...')
   global.commons.print('注意：如果表已存在，则会删掉原表并新建。', 'warn')
   connectDB(async (sequelize) => {
     global.sequelizeIns = sequelize
     global.Sequelize = Sequelize
     // 创建user表
-    let model = new UserModel()
-    let User = sequelize.define(
-      // 表名
-      model.getName(),
-      // 配置
-      model.getScheme(Sequelize),
-      //
-    )
-    // force: true 创建表，如果表已存在，删除再创建
-    await User.sync({ force: true })
+    let user = new UserModel()
+    await user.createTable()
     global.commons.print('用户表初始化完成！')
+    // ...
+
     global.commons.print('所有表初始化完成！')
   })
 }
