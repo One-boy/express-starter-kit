@@ -41,21 +41,26 @@ const createAction = (
   path,
   method,
 ) => {
-  router[method](baseurl + path, async (request, response) => {
-    const ctx = {
-      request,
-      response,
+  router[method](baseurl + path, async (request, response, next) => {
+    try {
+      const ctx = {
+        request,
+        response,
+      }
+      const controllerIns = new routerController(ctx)
+      await controllerIns.init()
+      if (controllerIns.isLogin) {
+        // 如果已经是登录状态
+        // 执行正常操作
+        await controllerIns[action].call(controllerIns, ctx)
+      } else {
+        // 未登录，提示未登录
+        response.json(resultFormat(null, RESULT_CODE.NOT_LOGIN.code, RESULT_CODE.NOT_LOGIN.msg))
+      }
+    } catch (error) {
+      next(error)
     }
-    const controllerIns = new routerController(ctx)
-    await controllerIns.init()
-    if (controllerIns.isLogin) {
-      // 如果已经是登录状态
-      // 执行正常操作
-      await controllerIns[action].call(controllerIns, ctx)
-    } else {
-      // 未登录，提示未登录
-      response.json(resultFormat(null, RESULT_CODE.NOT_LOGIN.code, RESULT_CODE.NOT_LOGIN.msg))
-    }
+
   })
 }
 
