@@ -6,6 +6,7 @@ const { RESULT_CODE } = require('../config/common')
 const { resultFormat } = require('../utils/common')
 const multer = require('multer')
 const { IMGFILE_PREFIX } = require('../config/common')
+const global = require('../global')
 
 // 文件存储器
 const storage = multer.diskStorage({
@@ -97,6 +98,7 @@ class ProductController extends baseController {
     // 如果 formdata有非文件数据，则放在ctx.request.body中
     multerUpload(ctx.request, ctx.response, (err) => {
       if (err) {
+        global.commons.print(err, 'error')
         ctx.response.json(resultFormat(
           null,
           RESULT_CODE.COMMON_ERROR.code,

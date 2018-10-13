@@ -21,6 +21,9 @@ class UserModel extends BaseModel {
   /**
    * 表结构
    * @param {*} Sequelize 
+   * String相当于VARCHAR(255)
+   * INTEGER最大四个字节
+   * 
    */
   getScheme(Sequelize) {
     global.commons.print('UserModel getScheme方法执行。')
@@ -54,11 +57,11 @@ class UserModel extends BaseModel {
       },
       // 创建记录的时间戳
       createdTime: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       // 最近更新的时间戳
       updatedTime: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
     }
   }

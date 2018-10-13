@@ -75,7 +75,7 @@ class UserController extends baseController {
       path: '/',
     })
     // 生成签名，签名7天过期
-    const token = jwt.sign({ uid, }, passwdsalt, { expiresIn: 1000 })
+    const token = jwt.sign({ uid, }, passwdsalt, { expiresIn:  '7d' })
     this.ctx.response.cookie('_token_', token, {
       // 过期时间
       expires: global.commons.expireDate(7),
